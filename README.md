@@ -54,6 +54,11 @@ pnpm exec convex deploy
 cd ../..
 
 pnpm self-host:configure
+# Add Google OAuth values to .self-host/convex.env if you use Google Calendar.
+cd packages/backend
+pnpm exec convex env set --prod --from-file ../../.self-host/convex.env
+pnpm exec convex deploy
+cd ../..
 pnpm self-host:deploy
 ```
 
