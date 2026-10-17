@@ -1,0 +1,15 @@
+{
+  "name": "convex-booking",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "packageManager": "pnpm@10.28.0",
+  "scripts": {
+    "backend:deploy": "pnpm --filter @convex-booking/backend deploy",
+    "backend:typecheck": "pnpm --filter @convex-booking/backend typecheck",
+    "self-host:configure": "node scripts/configure.mjs",
+    "self-host:deploy": "node scripts/deploy-cloudflare.mjs",
+    "test": "pnpm --recursive --if-present test"
+  }
+}

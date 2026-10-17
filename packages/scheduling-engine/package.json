@@ -1,0 +1,24 @@
+{
+  "name": "@convex-booking/scheduling-engine",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "dayjs": "1.11.2"
+  },
+  "devDependencies": {
+    "typescript": "5.9.2",
+    "vitest": "^3.0.0"
+  }
+}

@@ -1,0 +1,13 @@
+node_modules
+.env
+.env.local
+.env*.local
+*.log
+.next
+out
+dist
+deploy/.env
+.env.agent
+.self-host/
+app/wrangler.jsonc
+app/.env.self-host

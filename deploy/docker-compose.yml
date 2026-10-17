@@ -1,0 +1,27 @@
+# Small VPS — runs the prebuilt booking image from GHCR.
+# The image is built by .github/workflows/build-image.yml; this box only pulls.
+#
+#   docker compose pull && docker compose up -d
+#
+services:
+  booking:
+    image: ${BOOKING_IMAGE:-ghcr.io/modestapproach/convexbooking:latest}
+    container_name: convex-booking
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      # Loopback ONLY. cloudflared runs on this same host and reaches the app
+      # over localhost; port 3000 must never be reachable from the LAN.
+      - "127.0.0.1:3000:3000"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 90s
+    logging:
+      # Cap the json log file so a chatty week can't fill a 20 GB disk.
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
